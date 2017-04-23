@@ -178,10 +178,13 @@ typedef void (* bthf_key_pressed_cmd_callback)(bt_bdaddr_t *bd_addr);
 /** Callback for HF indicators (BIND)
  */
 typedef void (* bthf_bind_cmd_callback)(char* hf_ind, bthf_bind_type_t type, bt_bdaddr_t *bd_addr);
+typedef void (* bthf_bind_callback)(char *at_string, bt_bdaddr_t *bd_addr);
 
 /** Callback for HF indicator value (BIEV)
  */
 typedef void (* bthf_biev_cmd_callback)(char* hf_ind_val, bt_bdaddr_t *bd_addr);
+typedef void (* bthf_biev_callback)(bthf_hf_ind_type_t ind_id, int ind_value,
+                                        bt_bdaddr_t *bd_addr);
 
 /** BT-HF callback structure. */
 typedef struct {
@@ -203,8 +206,8 @@ typedef struct {
     bthf_cops_cmd_callback          cops_cmd_cb;
     bthf_clcc_cmd_callback          clcc_cmd_cb;
     bthf_unknown_at_cmd_callback    unknown_at_cmd_cb;
-    bthf_bind_cmd_callback          bind_cb;
-    bthf_biev_cmd_callback          biev_cb;
+    bthf_bind_callback              bind_cb;
+    bthf_biev_callback              biev_cb;
     bthf_key_pressed_cmd_callback   key_pressed_cmd_cb;
     bthf_bind_cmd_callback          bind_cmd_cb;
     bthf_biev_cmd_callback          biev_cmd_cb;
